@@ -1,3 +1,5 @@
+[![Python application](https://github.com/davidgg090/cargo_transport/actions/workflows/python-app.yml/badge.svg)](https://github.com/davidgg090/cargo_transport/actions/workflows/python-app.yml)
+
 # Cargo Transport API
 
 ## Descripción
