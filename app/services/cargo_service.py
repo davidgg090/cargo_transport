@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.models import Package, Report
+from app.models import PackageCreate, PackageResponse, Report
 from app.database import PackageDB
 from datetime import date
 import logging
@@ -17,13 +17,13 @@ class CargoService:
     def __init__(self, db: Session):
         self.db = db
 
-    def add_package(self, package: Package):
+    def add_package(self, package: PackageCreate) -> PackageResponse:
         db_package = PackageDB(**package.dict())
         self.db.add(db_package)
         self.db.commit()
         self.db.refresh(db_package)
         logger.info(f"Package added: {db_package.id}")
-        return db_package
+        return PackageResponse.from_orm(db_package)
 
     def generate_report(self, report_date: date) -> Report:
         packages_on_date = self.db.query(PackageDB).filter(PackageDB.date == report_date).all()
