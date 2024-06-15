@@ -11,6 +11,9 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
+app.add_exception_handler(HTTPException, http_exception_handler)
+
+
 app.include_router(cargo.router, prefix="/cargo", tags=["cargo"])
 app.include_router(auth.router, prefix="/auth", tags=["auth"])
 
@@ -28,28 +31,3 @@ def read_secure_data(user: str = Depends(get_current_user)):
     """
 
     return {"message": "You are authenticated", "user": user}
-
-
-app.add_exception_handler(HTTPException, http_exception_handler)
-
-
-@app.on_event("startup")
-def startup_event():
-    """
-    Handles the application startup event.
-
-    Logs a message indicating the application startup.
-    """
-
-    logger.info("Application startup")
-
-
-@app.on_event("shutdown")
-def shutdown_event():
-    """
-    Handles the application shutdown event.
-
-    Logs a message indicating the application shutdown.
-    """
-
-    logger.info("Application shutdown")
