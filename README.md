@@ -65,6 +65,15 @@ Esta es una API para una compañía aérea que se dedica al transporte de cargas
 
 ## Endpoints
 
+### Raíz
+
+- **GET** `/`: Devuelve un mensaje de bienvenida.
+    - Response: `{ "message": "Welcome to the Cargo Transport API" }`
+
+### Health Check
+
+- **GET** `/health`: Devuelve el estado de la aplicación.
+    - Response: `{ "status": "healthy" }`
 ### Autenticación
 
 - **POST** `/auth/register/`: Registrar un nuevo usuario.
