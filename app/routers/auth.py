@@ -16,7 +16,6 @@ def register(user: User, db: Session = Depends(get_db)):
 
     Args:
         user (User): The user data to register.
-        db (Session, optional): The database session. Defaults to Depends(get_db).
 
     Returns:
         dict: A dictionary containing the username of the newly registered user.
@@ -32,8 +31,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
     Logs in a user to generate an access token.
 
     Args:
-        form_data (OAuth2PasswordRequestForm, optional): The form data containing username and password. Defaults to Depends().
-        db (Session, optional): The database session. Defaults to Depends(get_db).
+        form_data (OAuth2PasswordRequestForm, optional): The form data containing username and password.
 
     Returns:
         Token: The generated access token.
