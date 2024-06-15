@@ -1,21 +1,42 @@
 from pydantic import BaseModel
 from datetime import date
-from typing import Optional
 
 
-class Package(BaseModel):
+class PackageBase(BaseModel):
     """
-    A data model class representing a package.
+    A base data model class representing the attributes of a package.
 
-    Represents a package with attributes such as id, client, weight, origin, destination, and date.
+    Represents a package with attributes such as client, weight, origin, destination, and date.
     """
 
-    id: int
     client: str
     weight: float
     origin: str
     destination: str
     date: date
+
+
+class PackageCreate(PackageBase):
+    """
+    A data model class for creating a package.
+
+    Inherits attributes from PackageBase for creating a new package.
+    """
+
+    pass
+
+
+class PackageResponse(PackageBase):
+    """
+    A data model class for a package response.
+
+    Inherits attributes from PackageBase and includes an additional id attribute.
+    """
+
+    id: int
+
+    class Config:
+        from_attributes = True
 
 
 class Report(BaseModel):
@@ -38,6 +59,19 @@ class User(BaseModel):
 
     username: str
     password: str
+
+
+class UserResponse(BaseModel):
+    """
+    A data model class for a user response.
+
+    Includes the username attribute and uses from_attributes configuration.
+    """
+
+    username: str
+
+    class Config:
+        from_attributes = True
 
 
 class Token(BaseModel):
