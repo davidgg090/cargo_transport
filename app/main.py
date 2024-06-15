@@ -1,8 +1,10 @@
-from fastapi import FastAPI, Depends, HTTPException
-from app.routers import cargo, auth
-from app.exceptions import http_exception_handler
-from app.auth.auth import get_current_user
 import logging
+
+from fastapi import FastAPI, Depends, HTTPException
+
+from app.auth.auth import get_current_user
+from app.exceptions import http_exception_handler
+from app.routers import cargo, auth
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

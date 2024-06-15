@@ -1,12 +1,13 @@
+import logging
+from datetime import date
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from typing import List
-from datetime import date
+
+from app.auth.auth import get_current_user
+from app.dependencies import get_db
 from app.models import PackageCreate, PackageResponse, Report
 from app.services.cargo_service import CargoService
-from app.dependencies import get_db
-from app.auth.auth import get_current_user
-import logging
 
 logger = logging.getLogger(__name__)
 

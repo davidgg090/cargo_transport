@@ -1,8 +1,9 @@
+import os
 from datetime import datetime, timedelta
 from typing import Optional
-from jose import JWTError, jwt
+
 from dotenv import load_dotenv
-import os
+from jose import JWTError, jwt
 
 load_dotenv()
 

@@ -1,8 +1,9 @@
-from sqlalchemy.orm import Session
-from app.models import User
-from app.database import UserDB
-from app.auth.jwt_handler import get_password_hash, verify_password
 import logging
+
+from sqlalchemy.orm import Session
+
+from app.auth.jwt_handler import get_password_hash, verify_password
+from app.database import UserDB
 
 logger = logging.getLogger(__name__)
 
