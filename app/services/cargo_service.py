@@ -28,8 +28,12 @@ class CargoService:
         return PackageResponse.from_orm(db_package)
 
     def generate_report(self, report_date: date) -> Report:
-        packages_on_date = self.db.query(PackageDB).filter(PackageDB.date == report_date).all()
+        packages_on_date = (
+            self.db.query(PackageDB).filter(PackageDB.date == report_date).all()
+        )
         total_packages = len(packages_on_date)
         total_revenue = total_packages * 10
-        logger.info(f"Report generated for date {report_date}: {total_packages} packages, {total_revenue} revenue")
+        logger.info(
+            f"Report generated for date {report_date}: {total_packages} packages, {total_revenue} revenue"
+        )
         return Report(total_packages=total_packages, total_revenue=total_revenue)

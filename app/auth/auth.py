@@ -4,7 +4,11 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
-from app.auth.jwt_handler import create_access_token, decode_token, ACCESS_TOKEN_EXPIRE_MINUTES
+from app.auth.jwt_handler import (
+    create_access_token,
+    decode_token,
+    ACCESS_TOKEN_EXPIRE_MINUTES,
+)
 from app.database import UserDB
 from app.dependencies import get_db
 from app.models import User
@@ -13,7 +17,9 @@ from app.services.user_service import UserService
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
 
 
-def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+def get_current_user(
+    token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)
+):
     """
     Gets the current user based on the provided token.
 
@@ -66,7 +72,9 @@ def register_user(user: User, db: Session = Depends(get_db)):
     return user_service.create_user(user.username, user.password)
 
 
-def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+def login_for_access_token(
+    form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)
+):
     """
     Logs in a user to generate an access token.
 

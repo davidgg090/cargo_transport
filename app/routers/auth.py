@@ -26,7 +26,9 @@ def register(user: User, db: Session = Depends(get_db)):
 
 
 @router.post("/token/", response_model=Token)
-def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+def login(
+    form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)
+):
     """
     Logs in a user to generate an access token.
 

@@ -15,7 +15,11 @@ router = APIRouter()
 
 
 @router.post("/packages/", response_model=PackageResponse)
-def add_package(package: PackageCreate, db: Session = Depends(get_db), user: str = Depends(get_current_user)):
+def add_package(
+    package: PackageCreate,
+    db: Session = Depends(get_db),
+    user: str = Depends(get_current_user),
+):
     """
     Adds a new package to the system.
 
@@ -38,7 +42,11 @@ def add_package(package: PackageCreate, db: Session = Depends(get_db), user: str
 
 
 @router.get("/report/", response_model=Report)
-def get_report(report_date: date, db: Session = Depends(get_db), user: str = Depends(get_current_user)):
+def get_report(
+    report_date: date,
+    db: Session = Depends(get_db),
+    user: str = Depends(get_current_user),
+):
     """
     Retrieves a report based on the specified date.
 
