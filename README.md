@@ -12,18 +12,20 @@ Esta es una API para una compañía aérea que se dedica al transporte de cargas
 - **JWT**: Para autenticación y manejo de tokens.
 - **python-dotenv**: Para cargar variables de entorno desde un archivo `.env`.
 - **pytest**: Framework para escribir y ejecutar pruebas.
+- **Docker**: Para contenerizar la aplicación y facilitar su despliegue.
 
 ## Requisitos Previos
 
-- Python 3.7+
-- `pip` (el gestor de paquetes de Python)
+- Python 3.12+
+- pip
+- Docker (opcional, para contenerización)
 
 ## Instalación
 
 1. Clonar el repositorio:
 
     ```bash
-    git clone https://github.com/tu_usuario/cargo_transport.git
+    git clone https://github.com/davidgg090/cargo_transport.git
     cd cargo_transport
     ```
 
@@ -87,3 +89,37 @@ Para ejecutar las pruebas, usa el siguiente comando:
 
 ```bash
 pytest
+```
+
+Esto ejecutará todas las pruebas definidas en la carpeta tests.
+
+
+# Contenerización con Docker
+
+### Requisitos Previos
+
+- Docker instalado en tu máquina.
+
+### Construir y Ejecutar la Imagen Docker
+
+1. **Construir la imagen Docker**:
+
+    ```bash
+    docker build -t cargo-transport-api .
+    ```
+
+2. **Ejecutar el contenedor**:
+
+    ```bash
+    docker run -d -p 8000:8000 --name cargo-transport-api-container cargo-transport-api
+    ```
+
+    La API estará disponible en [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+## Contribuciones
+
+Las contribuciones son bienvenidas. Por favor, crea un fork del repositorio, realiza tus cambios y envía un pull request.
+
+## Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT. 
